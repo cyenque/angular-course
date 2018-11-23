@@ -1,0 +1,26 @@
+<div class="card" style="width:70%; margin:20px auto">
+    <div class="card-header">
+        <h4>{{pageTitle}}</h4>
+    </div>
+
+    <div class="card-body" style="margin:0 auto">
+        <div class="container">
+            <div class="row">
+                <label for="userName" class="col-4">Usuario</label>
+                <input type="text" placeholder="Nombre Usuario" [(ngModel)]="userName" class="col-8" />        
+            </div>
+            <br/>
+            <div class="row">
+                <label for="userName" class="col-4">Clave</label>
+                <input type="password" placeholder="Password" [(ngModel)]="password" class="col-8" />
+            </div>
+            <br/>
+            <div class="row justify-content-end">
+                <button class="btn btn-primary col-4" style="margin-right: 10px" (click)="onLogin();"> Aceptar</button>
+                <button class="btn btn-secondary col-4" (click)="onCancel();"> Cancelar</button>
+            </div>
+            <br/>
+            <h4>{{errorMessage}}</h4>    
+        </div>
+    </div>
+</div>
