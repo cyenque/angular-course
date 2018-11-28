@@ -1,0 +1,36 @@
+<div class="modal-content">
+        
+        <div class="modal-header">
+            <h4 class="modal-title">{{IdTitle}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+            
+        <div class="modal-body">
+            <div class="container">
+                <div class="row">
+                    <div [innerHTML]="IdMessage" class="col-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="modal-footer">
+            <span>
+                <button class="btn btn-danger"
+                        (click)="onConfirm(true)"
+                        style="margin-right:10px" [disabled]="IdConfirm"
+                        >
+                    {{IdButton}}
+                </button>
+                <button class="btn btn-secondary"
+                        (click)="onConfirm(false)"
+                        style="margin-right:10px"
+                        >
+                    Cancelar
+                </button>
+            </span>
+        </div>
+    
+    </div>

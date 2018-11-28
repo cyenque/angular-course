@@ -1,0 +1,74 @@
+<div class="card" *ngIf="cliente">
+    <div class="card-header">
+        <h4>{{pageTitle}}</h4>
+    </div>    
+</div>
+<!-- NO PONER LOS PIPES HASTA EL FINAL-->
+<div class="card-body">
+    <div class="row">
+        <form #clienteForm="ngForm">
+            <fieldset>
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-md-6">Tipo Documento</div>
+                        <select class="form-control col-md-6" id="tipoNotaId" name="tipoNotaId" [(ngModel)]="cliente.tipoDocumento"
+                            #tipoNotaVar="ngModel" required>
+                            <option [ngValue]="undefined" selected>-- SELECCIONAR --</option>
+                            <option *ngFor="let tipo of tipoDocumentos" [ngValue]="tipo.descripcion">
+                                {{tipo.descripcion}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">Nro. Documento</div>
+                        <input type="text" class="form-control col-md-6" placeholder="Numero Documento (requerido)" [(ngModel)]="cliente.numeroDocumento"
+                            name="documentoId" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">Nombres</div>
+                        <input type="text" class="form-control col-md-6" placeholder="Nombres (requerido)" [(ngModel)]="cliente.nombres"
+                            name="nombresId" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">Apellido Paterno</div>
+                        <input type="text" class="form-control col-md-6" placeholder="Apellido Paterno (requerido)" [(ngModel)]="cliente.apellidoPaterno"
+                            name="apellidoPaternoId" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">Apellido Materno</div>
+                        <input type="text" class="form-control col-md-6" placeholder="Apellido Materno (requerido)" [(ngModel)]="cliente.apellidoMaterno"
+                            name="apellidoMaternoId" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">Sexo</div>
+                        <label class="form-check-inline"> Masculino
+                            <input class="form-check-input col-md-2" type="radio" name="sexoId" [value]="true" [(ngModel)]="sexo">
+                        </label>
+                        <label class="form-check-inline"> Femenino
+                            <input class="form-check-input col-md-2" type="radio" name="sexoId" [value]="false" [(ngModel)]="sexo">
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">F.Nacimiento</div>
+                        <input class="form-control col-md-6" type="date" [(ngModel)]="cliente.fechaNacimiento" name="fechaNacimientoId" required />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">Credito</div>
+                        <input type="number" class="form-control col-md-6" placeholder="Credito" 
+                            [(ngModel)]="cliente.credito" name="creditoId" />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">Es Activo</div>
+                        <input type="checkbox" class="form-control col-md-1" [(ngModel)]="cliente.esActivo" name="esActivoId" />
+                    </div>
+                </div>
+                <div class="text-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<div class="card-footer">
+    <div class="text-success" *ngIf="messageService">{{messageService}}</div>
+    <button type="button" class="btn btn-primary" (click)="onSaveCliente(clienteForm)" [disabled]="!clienteForm.valid" style="margin-right:10px">Grabar</button>
+    <button type="button" class="btn btn-secondary" [routerLink]="['/ventas/cliente']" style="cursor:pointer">Regresar</button>
+</div>

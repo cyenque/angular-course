@@ -1,0 +1,43 @@
+<div class="card">
+        <div class="card-header">
+            <h4>{{pageTitle}}</h4>
+        </div>
+    
+        <div class="text-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+        <br>
+        <a class="btn btn-success col-1" [routerLink]="['/ventas/cliente',0,'edit']">Nuevo</a>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Tipo</td>
+                        <td>Documento</td>
+                        <td>Nombres</td>
+                        <td>A.Paterno</td>
+                        <td>A.Materno</td>
+                        <td>Sexo</td>
+                        <td>F.Nac</td>
+                        <td>Credito</td>
+                        <td>Activo</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let cliente of clientes'>
+                        <td>{{cliente.tipoDocumento}}</td>
+                        <td><a [routerLink]="['/ventas/cliente', cliente.id]">{{cliente.numeroDocumento}}</a></td>
+                        <td>{{cliente.nombres}}</td>
+                        <td>{{cliente.apellidoPaterno}}</td>
+                        <td>{{cliente.apellidoMaterno}}</td>
+                        <td>{{cliente.sexo}}</td>
+                        <td>{{cliente.fechaNacimiento}}</td>
+                        <td>{{cliente.credito}}</td>
+                        <td>{{cliente.esActivo}}</td>
+                        <td>
+                           <a class="btn btn-primary" [routerLink]="['/ventas/cliente',cliente.id,'edit']">Editar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

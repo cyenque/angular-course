@@ -1,0 +1,47 @@
+<div class="card" *ngIf="cliente">
+    <div class="card-header" style="font-size:large">
+        {{pageTitle + ": " + cliente.tipoDocumento + " " + cliente.numeroDocumento}}
+    </div>
+    <!-- NO PONER LOS PIPES HASTA EL FINAL-->
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">Nombres</div>
+                    <div class="col-md-6">{{cliente.nombres | lowercase}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Apellido Paterno</div>
+                    <div class="col-md-6">{{cliente.apellidoPaterno | uppercase}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Apellido Materno</div>
+                    <div class="col-md-6">{{cliente.apellidoMaterno}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Sexo</div>
+                    <div class="col-md-6">{{cliente.sexo}}</div>
+                </div>
+                <div class="row">
+                        <div class="col-md-4">F.Nacimiento</div>
+                        <div class="col-md-6">{{cliente.fechaNacimiento | date:'dd/MM/yyyy'}}</div>
+                    </div>
+                <div class="row">
+                    <div class="col-md-4">Credito</div>
+                    <div class="col-md-6">{{cliente.credito | number: '1.2-2'}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Es Activo</div>
+                    <div class="col-md-6">{{cliente.esActivo}}</div>
+                </div>
+            </div>
+            <div class="has-error" *ngIf="errorMessage">{{errorMessage}}</div>
+        </div>
+    </div>
+    <pre>
+        {{cliente | json}}
+    </pre>
+    <div class="card-footer">
+        <button type="button" class="btn btn-primary" [routerLink]="['/ventas/cliente']" style="cursor:pointer">Regresar</button>
+    </div>
+</div>
