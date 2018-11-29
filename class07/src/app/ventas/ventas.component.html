@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <button class="navbar-toggler navbar-toggler-right" 
+            type="button" 
+            data-toggle="collapse" 
+            data-target="#navbarNavDropdown" 
+            aria-controls="navbarNavDropdown" 
+            aria-expanded="false"
+            (click)="isNavbarCollapsed = !isNavbarCollapsed" 
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+    </button>
+   
+    <a class="navbar-brand" href="#"><h5>{{pageTitle}}</h5></a>
+
+    <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown d-inline-block mb-0"
+                style="margin-left:10px" 
+                ngbDropdown #myDrop="ngbDropdown" 
+                *ngFor="let menu of menus">
+                <button class="btn nav-link dropdown-toggle mb-0 bg-white" 
+                        style="cursor:pointer; color:#0D4F81"
+                        id="dropdownManual"                        
+                        ngbDropdownToggle>
+                        {{menu.accion}}
+                </button>
+                <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdownManual">
+                    <button [routerLink]="[permiso.url]" 
+                        *ngFor="let permiso of menu.permisos"
+                        class="dropdown-item"
+                        routerLinkActive="active" [disabled]="!permiso.habilitado">{{permiso.descripcion}}</button>
+                </div>
+            </li>
+        </ul>
+        <div class="col text-right">
+                <a (click)="logOut()" class="nav-item" style="cursor:pointer;">Cerrar Sesión</a>
+            </div>
+        <!-- <div class="navbar-toggler-right" style="text-align:right; padding:9px auto;">
+            <p *ngIf="authService.isLoggedIn()" >
+                {{ ubicacionUsuario }} <br>
+                Bienvenido {{ authService.currentUser.nombres }} |
+                <a (click)="logOut()" class="nav-item" style="cursor:pointer">Cerrar Sesión</a>
+            </p>
+        </div>  -->
+    </div>
+</nav>
+<router-outlet></router-outlet>
+
+<br />
+<br />
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Sygno Web Solution - Software Integral de Gestión Empresarial</p>
+    </div>
+</footer>

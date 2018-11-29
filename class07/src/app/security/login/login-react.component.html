@@ -1,0 +1,42 @@
+<div class="card">
+    <div class="card-header">
+        <h4>{{pageTitle}}</h4>
+    </div>
+    <div class="card-body">
+        <form novalidate [formGroup]="form">
+            <label>
+              <span>Usuario</span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nombre Usuario"
+                formControlName="userName">
+            </label>
+            <label>
+                <span>Clave</span>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="password"
+                  formControlName="password">
+              </label>
+              <label>
+                <span>Confirmar Clave</span>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Confirma tu clave"
+                  formControlName="passwordRepeat">
+              </label>
+            <button (click)="onLogin()" class="btn btn-primary" [disabled]="!form.valid">Aceptar</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+          </form>
+    </div>
+    <div
+        class="error"
+        *ngIf="form.get('userName').hasError('required') && form.get('userName').touched">
+        Nombre requerido
+    </div>
+
+    <div *ngIf="form.hasError('mismatch')" class="error"> No coinciden los passwords</div> 
+</div>

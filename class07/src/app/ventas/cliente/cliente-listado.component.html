@@ -1,0 +1,60 @@
+<div class="card">
+        <div class="card-header">
+            <h4>{{pageTitle}}</h4>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">Filter by:</div>
+            <div class="col-md-4">
+                <input type="text" [(ngModel)]="listFilter" />
+            </div>
+        </div>
+        <div class="row" *ngIf="listFilter">
+            <div class="col-md-6">
+                <h3>Filtered by: {{listFilter}} </h3>
+            </div>
+        </div>
+    
+        <div class="text-danger" *ngIf="errorMessage">{{errorMessage}}</div>
+        <div class="text-success" *ngIf="messageService">{{messageService}}</div>
+        <br>
+        <a class="btn btn-success col-1" [routerLink]="['/ventas/cliente',0,'edit']">Nuevo</a>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Tipo</td>
+                        <td>Documento</td>
+                        <td>Nombres</td>
+                        <td>A.Paterno</td>
+                        <td>A.Materno</td>
+                        <td>Sexo</td>
+                        <td>F.Nac</td>
+                        <td>Credito</td>
+                        <td>Activo</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor='let cliente of clientes | clienteFilter:listFilter'>
+                        <td>{{cliente.tipoDocumento}}</td>
+                        <td><a [routerLink]="['/ventas/cliente', cliente.id]">{{cliente.numeroDocumento}}</a></td>
+                        <td [routerLink]="['/ventas/cliente']" [queryParams]="{filterBy:listFilter}">{{cliente.nombres}}</td>
+                        <td>{{cliente.apellidoPaterno}}</td>
+                        <td>{{cliente.apellidoMaterno}}</td>
+                        <td>{{cliente.sexo}}</td>
+                        <td>{{cliente.fechaNacimiento}}</td>
+                        <td>{{cliente.credito}}</td>
+                        <td>{{cliente.esActivo}}</td>
+                        <td>
+                           <a class="btn btn-primary" [routerLink]="['/ventas/cliente',cliente.id,'edit']">Editar</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" (click)="deleteCliente(cliente);">Borrar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
